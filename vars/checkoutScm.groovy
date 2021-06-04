@@ -6,6 +6,7 @@ def call() {
   if (scmVars) {
     env.GIT_COMMIT = scmVars.GIT_COMMIT
     env.GIT_URL = scmVars.GIT_URL
+    env.LAST_COMMIT_TIMESTAMP = steps.sh("git log -1 --pretty='%cd' --date=format:'%Y%m%d%H%M%S'")
   }
   try {
     def credentialsId = SCMSource.SourceByItem.findSource(currentBuild.rawBuild.parent).credentialsId
