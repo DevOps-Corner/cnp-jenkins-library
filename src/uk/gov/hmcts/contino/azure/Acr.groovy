@@ -160,8 +160,8 @@ class Acr extends Az {
 
     String tagFound = false
     try {
-      def tags = this.az "acr repository show-tags -n ${registryName} --subscription ${registrySubscription} --repository ${repository}"
-      def tagvalue = tag.replaceAll (/\"/,/\\\"/)
+      def tags = this.az "acr repository show-tags -n ${registryName} --subscription ${registrySubscription} --repository ${repository} | grep ${tag}"
+      def tagvalue = tags.replaceAll (/\"/,/\\\"/)
       tagFound = tagvalue.contains(tag)
       steps.echo "Current tags: ${tags}. Is ${tag} available? ... ${tagFound}"
     } catch (noTagsError) {
