@@ -158,7 +158,7 @@ class Acr extends Az {
       steps.echo "Warning: matching '${tag}' tag for ${repository}"
     }
 
-    String tagFound = false
+    // String tagFound = false
     try {
       String tags = this.az "acr repository show-tags -n ${registryName} --subscription ${registrySubscription} --repository ${repository} | grep ${tag}"
       String tagFound = tags.contains(tag)
