@@ -117,7 +117,7 @@ class DockerImage {
   }
 
   def getTag(String imageTag) {
-    return (imageTag ==  'latest' ? imageTag : "${imageTag}-${this.lastcommittime}")
+    return (imageTag ==  'latest' ? imageTag : "${imageTag}-${this.commit}")
   }
 
   def isLatest() {
@@ -155,7 +155,7 @@ class DockerImage {
    *   the short name. e.g. hmcts/product-component:branch
    */
   def getBaseShortName() {
-    def baseShortName = this.imageTag == 'staging' ? "${this.imageTag}-${this.lastcommittime}" : imageTag
+    def baseShortName = this.imageTag == 'staging' ? "${imageTag}-${this.commit}" : imageTag
     return repositoryName().concat(':')
       .concat(baseShortName)
   }
