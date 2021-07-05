@@ -14,7 +14,7 @@ def call(params) {
   if (config.fortifyScan) {
     stageWithAgent("Fortify Scan", product) {
       withFortifySecrets(product, environment) {
-        pcr.callAround('fortifyscan') {
+        pcr.callAround('fortify-scan') {
           builder.fortifyScan()
         }
       }
